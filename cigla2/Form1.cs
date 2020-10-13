@@ -16,5 +16,37 @@ namespace cigla2
         {
             InitializeComponent();
         }
+        int a = 80, b = 40;
+        int x, y;
+        bool down = false;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            down = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (down)
+            {
+                Graphics g = CreateGraphics();
+                Cigla c = new Cigla();
+                c.Postavi(a, b, x, y);
+                c.Crtaj(g);
+                y -= b;
+            }
+            
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X;
+            y = ClientRectangle.Height - b / 2;
+            down = true;
+        }
     }
 }
